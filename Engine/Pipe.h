@@ -9,14 +9,18 @@ public:
 	Pipe() = default;
 	void Draw(Graphics& gfx);
 	void Update(float speed, float dt);
+	void reset();
 	void PushBack(float gap, int nPipes);
 	float GetX();
 	float GetWidth();
+	const SafeBox& GetSafeBox() const;
 
 private:
 	float x;
+	float x_start;
 	float width = 100.0f;
 	Color c;
+	Color c_start;
 	SafeBox safebox;
 };
 

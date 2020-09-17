@@ -53,13 +53,34 @@ void Game::UpdateModel(float dt)
 	{
 		flappy.Update(wnd.kbd, wnd.mouse, dt);
 
-		for(auto& p : pipe)
+		for (auto& p : pipe)
 		{
 			p.Update(WorldSpeed, dt);
 			p.PushBack(gap, nPipes);
 		}
 	}
-	else if (wnd.kbd.KeyIsPressed(VK_SPACE) || wnd.mouse.LeftIsPressed()) bGameStarted = true;
+	else if (wnd.kbd.KeyIsPressed(VK_SPACE) || wnd.mouse.LeftIsPressed() && (!bMouse_LB_Inhibited && !bKBD_Space_Inhibited))
+	{
+		if (bGameOver)
+		{
+			flappy.reset();
+			for (auto& p : pipe) p.reset();
+			bGameOver = false;
+		}
+		else bGameStarted = true;
+	}
+
+	for (int i = 0; i < nPipes; i++)
+	{
+		if (flappy.bDead(pipe[i].GetSafeBox()))
+		{
+			bGameOver = true;
+			bGameStarted = false;
+		}
+	}
+
+	bMouse_LB_Inhibited = wnd.mouse.LeftIsPressed();
+	bKBD_Space_Inhibited = wnd.kbd.KeyIsPressed(VK_SPACE);
 }
 
 void Game::ComposeFrame()

@@ -58,5 +58,9 @@ private:
 	float PipeWidth = 100.0f;
 
 	bool bGameStarted = false;
+	bool bGameOver = false;
 	float WorldSpeed = 180.0f;
+
+	bool bMouse_LB_Inhibited = false;
+	bool bKBD_Space_Inhibited = false;
 };

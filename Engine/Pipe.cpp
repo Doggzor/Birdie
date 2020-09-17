@@ -6,6 +6,8 @@ Pipe::Pipe(float x, const Color& c)
 	c (c)
 {
 	safebox = { Vec2(x, rng::rdm_float(safebox.height + 20.0f, 580.0f - safebox.height)), width };
+	x_start = x;
+	c_start = c;
 }
 
 void Pipe::Draw(Graphics& gfx)
@@ -18,6 +20,13 @@ void Pipe::Update(float speed, float dt)
 {
 	x -= speed * dt;
 	safebox.center.x = x;
+}
+
+void Pipe::reset()
+{
+	x = x_start;
+	c = c_start;
+	safebox = { Vec2(x, rng::rdm_float(safebox.height + 20.0f, 580.0f - safebox.height)), width };
 }
 
 void Pipe::PushBack(float gap, int nPipes)
@@ -37,4 +46,9 @@ float Pipe::GetX()
 float Pipe::GetWidth()
 {
 	return width;
+}
+
+const SafeBox& Pipe::GetSafeBox() const
+{
+	return safebox;
 }
