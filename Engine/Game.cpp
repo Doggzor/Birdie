@@ -56,6 +56,7 @@ void Game::UpdateModel(float dt)
 		for(auto& p : pipe)
 		{
 			p.Update(WorldSpeed, dt);
+			p.PushBack(gap, nPipes);
 		}
 	}
 	else if (wnd.kbd.KeyIsPressed(VK_SPACE) || wnd.mouse.LeftIsPressed()) bGameStarted = true;

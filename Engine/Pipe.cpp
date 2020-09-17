@@ -16,3 +16,9 @@ void Pipe::Update(float speed, float dt)
 {
 	x -= speed * dt;
 }
+
+void Pipe::PushBack(float gap, int nPipes)
+{
+	//Push back the pipe when it goes off the left side of the screen, make a bigger gap after every 10 pipes
+	if ((x + width / 2) < 0) x += (width + gap) * nPipes + gap * 5.0f;
+}

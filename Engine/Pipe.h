@@ -7,6 +7,7 @@ public:
 	Pipe() = default;
 	void Draw(Graphics& gfx);
 	void Update(float speed, float dt);
+	void PushBack(float gap, int nPipes);
 
 private:
 	float x;
