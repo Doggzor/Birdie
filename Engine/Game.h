@@ -27,6 +27,7 @@
 #include "rng.h"
 #include "FrameTimer.h"
 #include "Vec2.h"
+#include "Flappy.h"
 
 class Game
 {
@@ -48,4 +49,5 @@ private:
 	/*  User Variables              */
     FrameTimer ft;
 	/********************************/
+	Flappy flappy;
 };

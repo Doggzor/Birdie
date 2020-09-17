@@ -24,7 +24,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	flappy (Vec2(100.0f, (float)(gfx.ScreenHeight/2)), 240.0f, 120.0f, Colors::Magenta)
 {
 }
 
@@ -42,5 +43,6 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	flappy.Draw(gfx);
 }
 
