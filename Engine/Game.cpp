@@ -25,7 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	flappy (Vec2(100.0f, (float)(gfx.ScreenHeight/2)), 300.0f, 750.0f, Colors::Magenta)
+	flappy (Vec2(100.0f, (float)(gfx.ScreenHeight/2)), 275.0f, 750.0f, Colors::Magenta)
 {
 	for (int i = 0; i < nPipes; i++)
 	{
@@ -64,7 +64,7 @@ void Game::UpdateModel(float dt)
 
 void Game::ComposeFrame()
 {
-	flappy.Draw(gfx);
 	for (auto& p : pipe) p.Draw(gfx);
+	flappy.Draw(gfx);
 }
 
