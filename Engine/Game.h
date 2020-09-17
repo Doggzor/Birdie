@@ -28,6 +28,7 @@
 #include "FrameTimer.h"
 #include "Vec2.h"
 #include "Flappy.h"
+#include "Pipe.h"
 
 class Game
 {
@@ -51,5 +52,11 @@ private:
 	/********************************/
 	Flappy flappy;
 
+	static constexpr int nPipes = 10;
+	Pipe pipe[nPipes];
+	float gap = 150.0f;
+	float PipeWidth = 100.0f;
+
 	bool bGameStarted = false;
+	float WorldSpeed = 180.0f;
 };

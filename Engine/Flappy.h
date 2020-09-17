@@ -12,7 +12,7 @@ public:
 
 private:
 	Vec2 pos;
-	static constexpr float width = 80.0f;
+	static constexpr float width = 60.0f;
 	static constexpr float height = 30.0f;
 	float MaxSpeed;
 	float speed = 0;

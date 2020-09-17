@@ -27,6 +27,10 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	flappy (Vec2(100.0f, (float)(gfx.ScreenHeight/2)), 300.0f, 750.0f, Colors::Magenta)
 {
+	for (int i = 0; i < nPipes; i++)
+	{
+		pipe[i] = { (float)gfx.ScreenWidth + (PipeWidth / 2.0f) + ((gap + PipeWidth) * i), Colors::Green };
+	}
 }
 
 void Game::Go()
@@ -48,6 +52,11 @@ void Game::UpdateModel(float dt)
 	if (bGameStarted)
 	{
 		flappy.Update(wnd.kbd, wnd.mouse, dt);
+
+		for(auto& p : pipe)
+		{
+			p.Update(WorldSpeed, dt);
+		}
 	}
 	else if (wnd.kbd.KeyIsPressed(VK_SPACE) || wnd.mouse.LeftIsPressed()) bGameStarted = true;
 }
@@ -55,6 +64,6 @@ void Game::UpdateModel(float dt)
 void Game::ComposeFrame()
 {
 	flappy.Draw(gfx);
-
+	for (auto& p : pipe) p.Draw(gfx);
 }
 
