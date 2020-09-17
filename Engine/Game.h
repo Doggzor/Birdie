@@ -50,4 +50,6 @@ private:
     FrameTimer ft;
 	/********************************/
 	Flappy flappy;
+
+	bool bGameStarted = false;
 };

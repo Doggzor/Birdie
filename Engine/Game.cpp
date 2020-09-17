@@ -45,7 +45,11 @@ void Game::Go()
 
 void Game::UpdateModel(float dt)
 {
-	flappy.Update(wnd.kbd, wnd.mouse, dt);
+	if (bGameStarted)
+	{
+		flappy.Update(wnd.kbd, wnd.mouse, dt);
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_SPACE) || wnd.mouse.LeftIsPressed()) bGameStarted = true;
 }
 
 void Game::ComposeFrame()
