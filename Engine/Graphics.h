@@ -63,6 +63,10 @@ public:
 	{
 		DrawRect(x0, y0, x0 + width, y0 + height, c);
 	}
+	void DrawRect(Vec2 center, float width, float height, Color c)
+	{
+		DrawRect((int)(center.x - width / 2), (int)(center.y - height / 2), (int)(center.x + width / 2), (int)(center.y + height / 2), c);
+	}
 	void DrawRectEmpty(int x, int y, int width, int height, int thickness, Color c);
 	void DrawCircle(int x, int y, int r, Color c);
 	void DrawCircleEmpty(int x, int y, int r, Color c);
