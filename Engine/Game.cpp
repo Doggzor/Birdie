@@ -25,24 +25,32 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	flappy (Vec2(100.0f, (float)(gfx.ScreenHeight/2)), 240.0f, 120.0f, Colors::Magenta)
+	flappy (Vec2(100.0f, (float)(gfx.ScreenHeight/2)), 300.0f, 750.0f, Colors::Magenta)
 {
 }
 
 void Game::Go()
 {
 	gfx.BeginFrame();
-	UpdateModel();
+	float ElapsedTime = ft.Mark();
+	while (ElapsedTime > 0.0f)
+	{
+		const float dt = std::min(0.0025f, ElapsedTime);
+		UpdateModel(dt);
+		ElapsedTime -= dt;
+	}
 	ComposeFrame();
 	gfx.EndFrame();
 }
 
-void Game::UpdateModel()
+void Game::UpdateModel(float dt)
 {
+	flappy.Update(wnd.kbd, wnd.mouse, dt);
 }
 
 void Game::ComposeFrame()
 {
 	flappy.Draw(gfx);
+
 }
 
