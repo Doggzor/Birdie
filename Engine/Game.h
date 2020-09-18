@@ -54,7 +54,7 @@ private:
 	/********************************/
 	bool bGameStarted = false;
 	bool bGameOver = false;
-	float WorldSpeed = 180.0f;
+	float WorldSpeed = 180.0f; //How fast is the wolr around flappy moving
 	static constexpr int top = 60;
 
 	Flappy flappy;
