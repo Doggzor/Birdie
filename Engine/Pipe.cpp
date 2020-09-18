@@ -33,7 +33,7 @@ void Pipe::PushBack(float gap, int nPipes)
 {
 	if ((x + width / 2) < 0)
 	{
-		x += (width + gap) * nPipes + gap * 5.0f; //Push back the pipe when it goes off the left side of the screen, make a bigger gap after every 10 pipes
+		x += (width + gap) * nPipes; //Push back the pipe when it goes off the left side of the screen, to make a bigger gap after every 10 pipes, add "+ gap * 5.0f" at the end
 		safebox.center.y = rng::rdm_float(safebox.height + 20.0f, 580.0f - safebox.height); //Randomize the position of the safebox
 	}
 }
