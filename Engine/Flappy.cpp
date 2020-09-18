@@ -13,7 +13,12 @@ Flappy::Flappy(const Vec2& pos, float MaxSpeed, float grav, const Color& color)
 
 void Flappy::Draw(Graphics& gfx)
 {
-	gfx.DrawRect(pos, width, height, c);
+	//gfx.DrawRect(pos, width, height, c);
+
+	int x = (int)(pos.x - width / 2);
+	int y = (int)(pos.y - height / 2);
+	if (speed > 0) img::BirdFlap(x, y, gfx);
+	else img::BirdFly(x, y, gfx);
 }
 
 void Flappy::Update(Keyboard& kbd, Mouse& mouse, float dt)
@@ -45,10 +50,11 @@ void Flappy::reset()
 
 bool Flappy::bDead(const SafeBox& safebox, int topwall)
 {
-	const float left = pos.x - width / 2.0f;
-	const float right = pos.x + width / 2.0f;
-	const float top = pos.y - height / 2.0f;
-	const float bottom = pos.y + height / 2.0f;
+	//2.0f at the end is a margin for error
+	const float left = pos.x - width / 2.0f + 2.0f;
+	const float right = pos.x + width / 2.0f - 2.0f;
+	const float top = pos.y - height / 2.0f + 2.0f;
+	const float bottom = pos.y + height / 2.0f - 2.0f;
 
 	const float boxleft = safebox.center.x - safebox.width / 2.0f;
 	const float boxright = safebox.center.x + safebox.width / 2.0f;

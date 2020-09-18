@@ -4,6 +4,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "SafeBox.h"
+#include "img.h"
 class Flappy
 {
 public:
