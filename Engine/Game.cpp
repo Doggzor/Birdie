@@ -58,6 +58,7 @@ void Game::UpdateModel(float dt)
 		{
 			p.Update(WorldSpeed, dt);
 			p.PushBack(gap, nPipes);
+			flappy.UpdateScore(p.GetSafeBox());
 		}
 	}
 	else if (wnd.kbd.KeyIsPressed(VK_SPACE) || wnd.mouse.LeftIsPressed() && (!bMouse_LB_Inhibited && !bKBD_Space_Inhibited))
@@ -88,6 +89,12 @@ void Game::ComposeFrame()
 {
 	gfx.DrawRect(0, top - 10, gfx.ScreenWidth, top, Colors::Green);
 	gfx.DrawRect(0, gfx.ScreenHeight - 10, gfx.ScreenWidth, gfx.ScreenHeight, Colors::Green);
+
+	img::score(20, 10, gfx);
+	numb.Draw(140, 10, flappy.score, Colors::White, gfx);
+	img::hscore(550, 10, gfx);
+	numb.Draw(750, 10, flappy.highscore, Colors::White, gfx);
+
 	for (auto& p : pipe) p.Draw(top, gfx);
 	flappy.Draw(gfx);
 }

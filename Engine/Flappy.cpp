@@ -18,6 +18,7 @@ void Flappy::Draw(Graphics& gfx)
 
 void Flappy::Update(Keyboard& kbd, Mouse& mouse, float dt)
 {
+	//Controls
 	if ((kbd.KeyIsPressed(VK_SPACE) || mouse.LeftIsPressed()) && (!bKBD_Space_Inhibited && !bMouse_LB_Inhibited))
 	{
 		speed = MaxSpeed;
@@ -25,8 +26,13 @@ void Flappy::Update(Keyboard& kbd, Mouse& mouse, float dt)
 	bMouse_LB_Inhibited = mouse.LeftIsPressed();
 	bKBD_Space_Inhibited = kbd.KeyIsPressed(VK_SPACE);
 	
+	//Movement
 	pos.y -= speed * dt;
 	speed -= grav * dt;
+
+	//Score counter cooldown timer
+	if (fScoreCD > 0) fScoreCD -= dt;
+	else fScoreCD = 0;
 }
 
 void Flappy::reset()
@@ -34,6 +40,7 @@ void Flappy::reset()
 	pos = pos_start;
 	c = c_start;
 	speed = 0;
+	score = 0;
 }
 
 bool Flappy::bDead(const SafeBox& safebox, int topwall)
@@ -55,4 +62,14 @@ bool Flappy::bDead(const SafeBox& safebox, int topwall)
 	}
 	if (top < (float)topwall || bottom > 590.0f) return true; //Did bird hit the top or the bottom
 	else return false;
+}
+
+void Flappy::UpdateScore(const SafeBox& safebox)
+{
+	if (highscore < score) highscore = score;
+	if ((int)pos.x == (int)safebox.center.x && fScoreCD <= 0)
+	{
+		score++;
+		fScoreCD = 0.3f;
+	}
 }

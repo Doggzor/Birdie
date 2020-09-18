@@ -29,6 +29,7 @@
 #include "Vec2.h"
 #include "Flappy.h"
 #include "Pipe.h"
+#include "img.h"
 
 class Game
 {
@@ -49,6 +50,7 @@ private:
 	/********************************/
 	/*  User Variables              */
     FrameTimer ft;
+	Numbers numb;
 	/********************************/
 	bool bGameStarted = false;
 	bool bGameOver = false;

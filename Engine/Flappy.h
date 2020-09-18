@@ -12,6 +12,9 @@ public:
 	void Update(Keyboard& kbd, Mouse& mouse, float dt);
 	void reset();
 	bool bDead(const SafeBox& safebox, int topwall);
+	void UpdateScore(const SafeBox& safebox);
+	int score = 0;
+	int highscore = 0;
 
 private:
 	Vec2 pos;
@@ -26,5 +29,6 @@ private:
 
 	bool bMouse_LB_Inhibited = false;
 	bool bKBD_Space_Inhibited = false;
+	float fScoreCD = 0;
 };
 
