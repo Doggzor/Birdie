@@ -11,7 +11,7 @@ public:
 	void Draw(Graphics& gfx);
 	void Update(Keyboard& kbd, Mouse& mouse, float dt);
 	void reset();
-	bool bDead(const SafeBox& safebox);
+	bool bDead(const SafeBox& safebox, int topwall);
 
 private:
 	Vec2 pos;

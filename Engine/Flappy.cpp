@@ -36,7 +36,7 @@ void Flappy::reset()
 	speed = 0;
 }
 
-bool Flappy::bDead(const SafeBox& safebox)
+bool Flappy::bDead(const SafeBox& safebox, int topwall)
 {
 	const float left = pos.x - width / 2.0f;
 	const float right = pos.x + width / 2.0f;
@@ -53,5 +53,6 @@ bool Flappy::bDead(const SafeBox& safebox)
 		if (top > boxtop && bottom < boxbottom) return false; //Is bird inside the hole in the pipe
 		else return true;
 	}
+	if (top < (float)topwall || bottom > 590.0f) return true; //Did bird hit the top or the bottom
 	else return false;
 }

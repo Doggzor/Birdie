@@ -73,7 +73,7 @@ void Game::UpdateModel(float dt)
 
 	for (int i = 0; i < nPipes; i++)
 	{
-		if (flappy.bDead(pipe[i].GetSafeBox()))
+		if (flappy.bDead(pipe[i].GetSafeBox(), top))
 		{
 			bGameOver = true;
 			bGameStarted = false;
