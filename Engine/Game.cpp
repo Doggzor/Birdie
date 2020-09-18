@@ -30,6 +30,7 @@ Game::Game( MainWindow& wnd )
 	for (int i = 0; i < nPipes; i++)
 	{
 		pipe[i] = { (float)gfx.ScreenWidth + (PipeWidth / 2.0f) + ((gap + PipeWidth) * i), Colors::Green };
+		pipe[i].reset(top);
 	}
 }
 
@@ -64,7 +65,7 @@ void Game::UpdateModel(float dt)
 		if (bGameOver)
 		{
 			flappy.reset();
-			for (auto& p : pipe) p.reset();
+			for (auto& p : pipe) p.reset(top);
 			bGameOver = false;
 		}
 		else bGameStarted = true;
@@ -85,7 +86,9 @@ void Game::UpdateModel(float dt)
 
 void Game::ComposeFrame()
 {
-	for (auto& p : pipe) p.Draw(gfx);
+	gfx.DrawRect(0, top - 10, gfx.ScreenWidth, top, Colors::Green);
+	gfx.DrawRect(0, gfx.ScreenHeight - 10, gfx.ScreenWidth, gfx.ScreenHeight, Colors::Green);
+	for (auto& p : pipe) p.Draw(top, gfx);
 	flappy.Draw(gfx);
 }
 

@@ -7,9 +7,9 @@ class Pipe
 public:
 	Pipe(float x, const Color& c);
 	Pipe() = default;
-	void Draw(Graphics& gfx);
+	void Draw(int top, Graphics& gfx);
 	void Update(float speed, float dt);
-	void reset();
+	void reset(int top);
 	void PushBack(float gap, int nPipes);
 	float GetX();
 	float GetWidth();

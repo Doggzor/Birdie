@@ -50,6 +50,11 @@ private:
 	/*  User Variables              */
     FrameTimer ft;
 	/********************************/
+	bool bGameStarted = false;
+	bool bGameOver = false;
+	float WorldSpeed = 180.0f;
+	static constexpr int top = 60;
+
 	Flappy flappy;
 
 	static constexpr int nPipes = 10;
@@ -57,9 +62,7 @@ private:
 	float gap = 150.0f;
 	float PipeWidth = 100.0f;
 
-	bool bGameStarted = false;
-	bool bGameOver = false;
-	float WorldSpeed = 180.0f;
+
 
 	bool bMouse_LB_Inhibited = false;
 	bool bKBD_Space_Inhibited = false;

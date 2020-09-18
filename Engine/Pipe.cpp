@@ -10,9 +10,9 @@ Pipe::Pipe(float x, const Color& c)
 	c_start = c;
 }
 
-void Pipe::Draw(Graphics& gfx)
+void Pipe::Draw(int top, Graphics& gfx)
 {
-	gfx.DrawRect((int)(x - width / 2.0f), 0, (int)(x + width / 2.0f), gfx.ScreenHeight, c);
+	gfx.DrawRect((int)(x - width / 2.0f), top, (int)(x + width / 2.0f), gfx.ScreenHeight, c);
 	safebox.Draw(gfx);
 }
 
@@ -22,11 +22,11 @@ void Pipe::Update(float speed, float dt)
 	safebox.center.x = x;
 }
 
-void Pipe::reset()
+void Pipe::reset(int top)
 {
 	x = x_start;
 	c = c_start;
-	safebox = { Vec2(x, rng::rdm_float(safebox.height + 20.0f, 580.0f - safebox.height)), width };
+	safebox = { Vec2(x, rng::rdm_float(safebox.height + (float)top + 20.0f, 580.0f - safebox.height)), width };
 }
 
 void Pipe::PushBack(float gap, int nPipes)
